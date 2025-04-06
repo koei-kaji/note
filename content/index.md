@@ -1,6 +1,5 @@
 ---
-title: Welcome to Quartz
+title: Koei's Garden
 ---
 
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+- [[StructureNotes/02lq-202504061200|Terminal]]
