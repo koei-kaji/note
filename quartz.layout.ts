@@ -36,19 +36,29 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.RecentNotes({
-      filter: (page) => {
-        // draft が true のノートをフィルタリング
-        if (page.frontmatter?.draft) return false
+    Component.DesktopOnly(
+      Component.RecentNotes({
+        filter: (page) => {
+          // draft が true のノートをフィルタリング
+          if (page.frontmatter?.draft) return false
 
-        // PermanentNotes ディレクトリ配下のノートのみを表示
-        return !!page.slug && page.slug.startsWith("PermanentNotes/")
-      },
-    }),
+          // PermanentNotes ディレクトリ配下のノートのみを表示
+          return !!page.slug && page.slug.startsWith("PermanentNotes/")
+        },
+      }),
+    ),
     Component.Explorer({
       filterFn: (node) => {
         const omit = new Set(["FleetingNotes", "tags"])
         return !omit.has(node.slugSegment)
+      },
+
+      mapFn: (node) => {
+        if (node.isFolder) {
+          node.displayName = "📁 " + node.displayName
+        } else {
+          node.displayName = "📄 " + node.displayName
+        }
       },
     }),
   ],
@@ -74,15 +84,17 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.RecentNotes({
-      filter: (page) => {
-        // draft が true のノートをフィルタリング
-        if (page.frontmatter?.draft) return false
+    Component.DesktopOnly(
+      Component.RecentNotes({
+        filter: (page) => {
+          // draft が true のノートをフィルタリング
+          if (page.frontmatter?.draft) return false
 
-        // PermanentNotes ディレクトリ配下のノートのみを表示
-        return !!page.slug && page.slug.startsWith("PermanentNotes/")
-      },
-    }),
+          // PermanentNotes ディレクトリ配下のノートのみを表示
+          return !!page.slug && page.slug.startsWith("PermanentNotes/")
+        },
+      }),
+    ),
     Component.Explorer({
       filterFn: (node) => {
         const omit = new Set(["FleetingNotes", "tags"])
