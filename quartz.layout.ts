@@ -8,8 +8,7 @@ export const sharedPageComponents: SharedLayout = {
   afterBody: [],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/jackyzha0/quartz",
-      "Discord Community": "https://discord.gg/cRFFHYye7t",
+      GitHub: "https://github.com/koei-kaji/note",
     },
   }),
 }
@@ -37,7 +36,20 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.RecentNotes({
+      filter: (page) => {
+        // FleetingNotes ディレクトリ配下のノートをフィルタリング
+        if (page.slug?.startsWith("FleetingNotes/")) return false
+
+        return true
+      },
+    }),
+    Component.Explorer({
+      filterFn: (node) => {
+        const omit = new Set(["FleetingNotes", "tags"])
+        return !omit.has(node.slugSegment)
+      },
+    }),
   ],
   right: [
     Component.Graph(),
@@ -61,7 +73,20 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.RecentNotes({
+      filter: (page) => {
+        // FleetingNotes ディレクトリ配下のノートをフィルタリング
+        if (page.slug?.startsWith("FleetingNotes/")) return false
+
+        return true
+      },
+    }),
+    Component.Explorer({
+      filterFn: (node) => {
+        const omit = new Set(["FleetingNotes", "tags"])
+        return !omit.has(node.slugSegment)
+      },
+    }),
   ],
   right: [],
 }
