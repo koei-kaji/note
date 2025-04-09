@@ -14,4 +14,4 @@ neovim を AI Editor 化するにあたり、codecompanion.nvim を使用。
 
 # Details
 
-- [[PermanentNotes/s1g1-202504090745|codecompanion workspace の楽な管理を目指して]]
+- [[PermanentNotes/s1g1-202504090745|Codecompanion Workspace の楽な管理を目指す]]
