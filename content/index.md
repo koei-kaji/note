@@ -2,4 +2,6 @@
 title: Koei's Garden
 ---
 
-- [[StructureNotes/terminal_ide|Terminal を IDE 化する]]
+試験運用中
+
+## [[StructureNotes]]
