@@ -38,10 +38,11 @@ export const defaultContentPageLayout: PageLayout = {
     }),
     Component.RecentNotes({
       filter: (page) => {
-        // FleetingNotes ディレクトリ配下のノートをフィルタリング
-        if (page.slug?.startsWith("FleetingNotes/")) return false
+        // draft が true のノートをフィルタリング
+        if (page.frontmatter?.draft) return false
 
-        return true
+        // PermanentNotes ディレクトリ配下のノートのみを表示
+        return !!page.slug && page.slug.startsWith("PermanentNotes/")
       },
     }),
     Component.Explorer({
@@ -75,10 +76,11 @@ export const defaultListPageLayout: PageLayout = {
     }),
     Component.RecentNotes({
       filter: (page) => {
-        // FleetingNotes ディレクトリ配下のノートをフィルタリング
-        if (page.slug?.startsWith("FleetingNotes/")) return false
+        // draft が true のノートをフィルタリング
+        if (page.frontmatter?.draft) return false
 
-        return true
+        // PermanentNotes ディレクトリ配下のノートのみを表示
+        return !!page.slug && page.slug.startsWith("PermanentNotes/")
       },
     }),
     Component.Explorer({
